@@ -1,0 +1,54 @@
+<?php
+
+namespace Cadastro\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Perfil
+ *
+ * @ORM\Table(name="perfil")
+ * @ORM\Entity
+ */
+class Perfil
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Cadastro\Entity\FuncaoAcao", inversedBy="perfil")
+     * @ORM\JoinTable(name="permissao",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="perfil_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="funcao_acao_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $funcaoAcao;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->funcaoAcao = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

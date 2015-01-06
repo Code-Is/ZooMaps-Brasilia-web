@@ -1,0 +1,16 @@
+<?php echo $this->doctype(); ?>
+<html lang="pt-br">
+    <?php echo $this->render('layout/header'); ?>
+    <body>
+        <div id="wrapper">
+            <?php echo $this->render('layout/menu'); ?>
+            <div id="page-wrapper">  
+                <div class="row">
+                    <div class="col-lg-12">
+                        <?php echo $this->content; ?>
+                    </div>
+                </div><!-- /.row -->
+            </div>
+        </div><!-- /#wrapper -->
+    </body>
+</html>

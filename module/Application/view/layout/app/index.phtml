@@ -1,0 +1,17 @@
+<?php echo $this->doctype(); ?>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Zoo')->setSeparator(' - ')->setAutoEscape(false); ?>
+        <link href="/templates/app/assets/css/ionic.css" rel="stylesheet">
+        <link href="/templates/app/assets/css/ionicons.min.css" rel="stylesheet">
+        <!-- ionic/angularjs js -->
+        <script src="/templates/app/assets/js/ionic.bundle.js"></script>
+        <script src="/templates/app/assets/js/controller.js"></script>
+        <script src="/templates/app/assets/js/app.js"></script>
+    </head>
+    <body ng-app="starter">
+        <?php echo $this->content; ?>
+    </body>
+</html>

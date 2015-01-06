@@ -1,0 +1,41 @@
+<div class="zf-table-wrap  form-inline">
+    <div class="table-header">
+    </div>
+    <div class="row ">
+        <div class="col-sm-6 pull-left">
+            <?php if ($this->showItemPerPage): ?>
+                <label class="pull-left">
+                    <select class="itemPerPage form-control input-xs" style="width: 100px;">
+                        <?php foreach ($this->itemCountPerPageValues as $item): ?>
+                            <?php $selected = ($item == $this->itemCountPerPage) ? 'selected="selected"' : '""'; ?>
+                            <option <?php echo $selected ?>><?php echo $item ?></option>
+                        <?php endforeach; ?>
+                    </select> 
+                </label> 
+           <?php endif; ?>
+        </div>
+        <?php if ($this->showQuickSearch): ?>
+            <div class="dataTables_filter pull-right col-sm-3" id="dataTable_filter">
+                <label class="pull-right"><input type="text" aria-controls="dataTable" class="quick-search form-control input-xs" placeholder="Pesquisar..." value="<?php echo $this->quickSearch ?>">
+                </label>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php echo $this->table; ?>
+    <div class="row">
+        <div class="col-sm-6 text-left">
+
+        </div>
+        <div class="col-sm-6 text-right">
+            <?php if ($this->showPagination): ?>
+                <div class="dataTables_paginate paging_bootstrap pagination">
+                    <?php echo $this->paginator; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="dataTables_processing">
+        	<img src='/assets/images/ajax-loading.gif' />
+        </div>
+    </div>
+    <?php echo $this->paramsWrap; ?>
+</div>

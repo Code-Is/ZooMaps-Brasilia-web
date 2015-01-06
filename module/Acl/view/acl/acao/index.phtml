@@ -1,0 +1,33 @@
+<?php echo $this->displayMessage(); ?>
+
+<div>Ação</div>
+
+<table>
+	<thead>
+		<tr>
+			<td><?=$this->escapehtml('Nome')?><td>
+			<td><?=$this->escapehtml('Descrição')?><td>
+			<td>
+				<a href="<?=$this->url('acl', array('controller' => 'acao', 'action' => 'inserir'))?>">
+					{Inserir}
+				</a>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<?php foreach ($this->acoes as $acao) :?>
+				<td><?=$this->escapehtml($acao->getNome())?><td>
+				<td><?=$this->escapehtml($acao->getDescricao())?><td>
+				<td>
+					<a href="<?=$this->url('acl', array('controller' => 'acao', 'action' => 'atualizar', 'id' => $acao->getId()))?>">
+						{atualizar}
+					</a>
+					<a href="<?=$this->url('acl', array('controller' => 'acao', 'action' => 'remover', 'id' => $acao->getId()))?>">
+						{remover}
+					</a>
+				</td>
+			<?php endforeach;?>
+		</tr>
+	</tbody>
+</table>

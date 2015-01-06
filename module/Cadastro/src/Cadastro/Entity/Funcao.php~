@@ -1,0 +1,46 @@
+<?php
+
+namespace Cadastro\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Funcao
+ *
+ * @ORM\Table(name="funcao")
+ * @ORM\Entity
+ */
+class Funcao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="controller", type="string", length=100, nullable=false)
+     */
+    private $controller;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=100, nullable=false)
+     */
+    private $url;
+
+
+}

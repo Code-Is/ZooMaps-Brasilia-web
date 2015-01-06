@@ -1,0 +1,43 @@
+<?php echo $this->displayMessage(); ?>
+<div class="panel panel-primary">
+	<div class="panel-heading">Permissões</div>
+	<div class="panel-body">
+			<table class="table table-striped table-bordered table-hover"
+				id="paginacaoTabela">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th style="width:75%;">Ações</th>
+						<th style="width:50px;">Ordem</th>
+						<th>
+							<?php echo $this->linkInserir('acl', array('controller' => 'funcao', 'action' => 'inserir')); ?>
+						</th>
+						<th>funcaoAcao.id</th>
+						<th>funcaoAcao.acao.id</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$('#paginacaoTabela').dataTable( {
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": $(location).attr('href'),
+         "aoColumns": [
+             { "mData": "descricao" },
+             { "mData": "funcaoAcao.acao.descricao" },
+             { "mData": "ordem" },
+             { "mData": "id" },
+			 { "mData": "funcaoAcao.id", 'bVisible': false }, // ocultar
+             { "mData": "funcaoAcao.acao.id", 'bVisible': false }, // ocultar
+          ]
+    });
+});
+
+</script>

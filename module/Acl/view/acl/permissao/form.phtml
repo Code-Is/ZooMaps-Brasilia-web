@@ -1,0 +1,45 @@
+<?php
+$options = array(
+    
+    'head_check_callback' => function ($last, $current)
+    {
+        return ! $last || $last->getFuncao()->getId() != $current->getFuncao()->getId();
+    },
+    
+    'head_label_callback' => function (\Acl\Entity\FuncaoAcao $current)
+    {
+        $nome = $current->getFuncao()->getMenu() . ' <i class="fa fa-angle-right"></i> ' . $current->getFuncao()->getDescricao();
+        return $current ? $nome : '';
+    }
+);
+
+?>
+<?php echo $this->displayMessage(); ?>
+<div class="panel panel-primary">
+	<div class="panel-heading">Permissões</div>
+	<div class="panel-body">
+    	<div class="form-group col-sm-10 col-sm-offset-2">
+    		<?php echo $this->form()->openTag($this->form); ?>
+            <?php echo $this->formHidden($this->form->get('id')); ?>
+            <?php echo $this->formRow($this->form->get('nome')); ?>
+    		<br />
+            <div class="form-group ">                <label>Permissões</label>
+                <?php echo $this->formGroupMultiCheckbox()->setOptions($options)->render($this->form->get('funcaoAcao')); ?>
+            </div>
+    		<br />
+            <div class="form-group ">
+                <div class=" col-sm-12">
+                    <button type="submit" name="button-enviar" class="btn-primary btn" value="">Confirmar</button>
+                    <button type="submit" name="button-cancelar" class="btn-default btn" value="" formnovalidate="formnovalidate">Cancelar</button>
+                </div>
+            </div>            <?php echo $this->form()->closeTag(); ?>
+    	</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/assets/scripts/pages/acl/permissao.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	Permissao.init();
+});
+</script>

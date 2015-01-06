@@ -1,0 +1,61 @@
+<?php $this->headTitle($animal->getNome()); ?>
+
+<ion-header-bar align-title="center" class="bar-balanced">
+    <div class="buttons">
+        <a class="button btn-back" href="<?php echo $this->url('lista', array(
+            'controller' => 'recinto',
+            'nome' => $this->cleanURI($animal->getRecinto()->getNome()),
+            'id' => $animal->getRecinto()->getId(),
+        )); ?>">Voltar</a>
+    </div>    
+    <h1 class="title">Animal</h1>
+</ion-header-bar>
+
+<ion-view>
+    <ion-content class="has-header" scroll="true" padding="true">
+        <div class="list">
+
+            <a class="item item-thumbnail-left" href="#">
+                <img src="/<?php echo $animal->getImagem(); ?>">
+                <h2><?php echo $animal->getNome(); ?></h2>
+                <p class="text-wrap"><?php echo $animal->getNomeCientifico(); ?></p>
+            </a>
+        </div>
+        <div>
+            <p>Estado de conservação:
+                <strong><?php echo $animal->getEstadoConservacao(); ?></strong>
+            </p>
+        </div>
+        <div class="spacer" style="width: 300px; height: 20px;"></div>
+        <div>
+
+            <strong>Descrição:</strong>
+            <p><?php echo $animal->getDescricao(); ?></p>
+            <div class="button-bar"></div>
+            <div class="button-bar"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <strong>Atididade</strong>
+            </div>
+            <div class="col">
+                <strong>Ambiente</strong>
+            </div>
+            <div class="col">
+                <strong>Alimentação</strong>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col"><?php echo $animal->getAtividade()->getNome(); ?></div>
+            <div class="col"><?php echo $animal->getAmbiente()->getNome(); ?></div>
+            <div class="col"><?php echo $animal->getAlimentacao()->getNome(); ?></div>
+        </div>
+        <div class="list card">
+
+            <a href="https://www.google.com.br/maps/place/<?php echo $animal->getLocalizacaoY(); ?>+<?php echo $animal->getLocalizacaoX(); ?>/" class="item item-icon-left">
+                <i class="icon ion-map"></i>
+                Consultar Localização
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

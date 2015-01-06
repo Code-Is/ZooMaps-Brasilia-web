@@ -1,0 +1,62 @@
+<head>
+  
+    <?php echo $this->headTitle('ZooMaps')->setSeparator(' - ')->setAutoEscape(false); ?>
+    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/assets/images/favicon.ico">
+
+    <?php 
+    echo $this->headLink()
+        ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+        ->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
+        ->appendStylesheet('/templates/assets/css/custom.css')
+        ->appendStylesheet('http://teste.sdt21.com.br/assets/scripts/plugins/data-tables/jquery.dataTables.css')
+    
+    ?>
+    
+
+    <?php
+    echo $this->headScript()
+        /**
+         * Bootstrap and jQuery
+         */
+        ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+        ->appendFile('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+        ->appendFile('//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js')
+        
+        ->appendFile($this->basePath() . '/templates/assets/plugins/select2/select2.js')
+        ->appendFile($this->basePath() . '/templates/assets/plugins/select2/select2_locale_pt-BR.js')
+        
+        ->appendFile('/templates/assets/scripts/zf-table.js')
+        
+        //->appendFile($this->basePath() . '/assets/scripts/scripts.js')
+        
+        /**
+         * Plugins
+         */
+        ->appendFile($this->basePath() . '/templates/assets/plugins/boot-box/bootbox.min.js')
+
+
+    ?>    
+
+    <?php 
+    
+    $this->inlineScript()->captureStart();
+    echo <<<JS
+    $(function() {
+        
+    });
+JS;
+    $this->inlineScript()->captureEnd();
+    
+    echo $this->inlinescript()
+    
+    ?>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>

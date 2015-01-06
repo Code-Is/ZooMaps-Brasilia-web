@@ -1,0 +1,107 @@
+<?php
+
+namespace Cadastro\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Animal
+ *
+ * @ORM\Table(name="animal", uniqueConstraints={@ORM\UniqueConstraint(name="nome_cientifico_UNIQUE", columns={"nome_cientifico"})}, indexes={@ORM\Index(name="fk_animal_ambiente1_idx", columns={"ambiente_id"}), @ORM\Index(name="fk_animal_atividade1_idx", columns={"atividade_id"}), @ORM\Index(name="fk_animal_alimentacao1_idx", columns={"alimentacao_id"}), @ORM\Index(name="fk_animal_recinto1_idx", columns={"recinto_id"})})
+ * @ORM\Entity
+ */
+class Animal
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_cientifico", type="string", length=255, nullable=false)
+     */
+    private $nomeCientifico;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado_conservacao", type="string", length=255, nullable=false)
+     */
+    private $estadoConservacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="text", nullable=false)
+     */
+    private $descricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="localizacao_y", type="string", length=255, nullable=false)
+     */
+    private $localizacaoY;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="localizacao_x", type="string", length=255, nullable=false)
+     */
+    private $localizacaoX;
+
+    /**
+     * @var \Cadastro\Entity\Alimentacao
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Alimentacao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="alimentacao_id", referencedColumnName="id")
+     * })
+     */
+    private $alimentacao;
+
+    /**
+     * @var \Cadastro\Entity\Ambiente
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Ambiente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ambiente_id", referencedColumnName="id")
+     * })
+     */
+    private $ambiente;
+
+    /**
+     * @var \Cadastro\Entity\Atividade
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Atividade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="atividade_id", referencedColumnName="id")
+     * })
+     */
+    private $atividade;
+
+    /**
+     * @var \Cadastro\Entity\Recinto
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Recinto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recinto_id", referencedColumnName="id")
+     * })
+     */
+    private $recinto;
+
+
+}

@@ -1,0 +1,59 @@
+<?php
+
+namespace Cadastro\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FuncaoAcao
+ *
+ * @ORM\Table(name="funcao_acao", indexes={@ORM\Index(name="fk_acao_has_funcao_funcao1_idx", columns={"funcao_id"}), @ORM\Index(name="fk_acao_has_funcao_acao1_idx", columns={"acao_id"})})
+ * @ORM\Entity
+ */
+class FuncaoAcao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Cadastro\Entity\Acao
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Acao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="acao_id", referencedColumnName="id")
+     * })
+     */
+    private $acao;
+
+    /**
+     * @var \Cadastro\Entity\Funcao
+     *
+     * @ORM\ManyToOne(targetEntity="Cadastro\Entity\Funcao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="funcao_id", referencedColumnName="id")
+     * })
+     */
+    private $funcao;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Cadastro\Entity\Perfil", mappedBy="funcaoAcao")
+     */
+    private $perfil;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->perfil = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

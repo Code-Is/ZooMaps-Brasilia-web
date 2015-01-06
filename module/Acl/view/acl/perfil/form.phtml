@@ -1,0 +1,45 @@
+<?php
+$options = array(
+    
+    'head_check_callback' => function ($last, $current)
+    {
+        return ! $last || $last->getFuncao()->getId() != $current->getFuncao()->getId();
+    },
+    
+    'head_label_callback' => function (\Acl\Entity\FuncaoAcao $current)
+    {
+        $nome = $current->getFuncao()->getDescricao();
+        return $current ? $nome : '';
+    }
+);
+
+?>
+<?php echo $this->displayMessage(); ?>
+<div class="panel panel-primary">
+	<div class="panel-heading">Perfil</div>
+	<div class="panel-body">
+    	<div class="form-group col-sm-10 col-sm-offset-2">
+    		<?php echo $this->form()->openTag($this->form); ?>
+            <?php echo $this->formHidden($this->form->get('id')); ?>
+            <?php echo $this->formRow($this->form->get('nome')); ?>
+    		<br />
+            <div class="form-group ">                <label>Permissões</label>
+                <?php echo $this->formGroupMultiCheckbox()->setOptions($options)->render($this->form->get('funcaoAcao')); ?>
+            </div>
+    		<br />
+            <div class="form-group ">
+                <div class=" col-sm-12">
+                    <button type="submit" name="button-submit" class="btn-primary btn" value="">Confirmar</button>
+                    <a class="btn-default btn" href="?cancelar">Cancelar</a>
+                </div>
+            </div>            <?php echo $this->form()->closeTag(); ?>
+    	</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/assets/scripts/pages/acl/perfil.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	Perfil.init();
+});
+</script>

@@ -1,0 +1,22 @@
+# Use PHP 5.3
+AddHandler application/x-httpd-php53 .php 
+
+# Turn on rewrites.
+RewriteEngine On
+ 
+# Only apply to URLs on this domain
+RewriteCond %{HTTP_HOST} ^(www.)?app.codeis.com.br$
+ 
+# Only apply to URLs that aren't already under folder.
+RewriteCond %{REQUEST_URI} !^/public/
+ 
+# Don't apply to URLs that go to existing files or folders.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+ 
+# Rewrite all those to insert /folder.
+RewriteRule ^(.*)$ /public/$1
+ 
+# Also redirect the root folder.
+RewriteCond %{HTTP_HOST} ^(www.)?app.codeis.com.br$
+RewriteRule ^(/)?$ public/ [L]
